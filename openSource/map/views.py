@@ -17,3 +17,19 @@ def index(request):
         'm':m,
     }
     return render(request,'index.html',context)
+
+
+def connect(request):
+    return render(request,'connect.html')
+
+
+def map (request):
+    return render(request,'map.html')
+
+def head (request):
+    return render(request,'head.html')
+
+
+def about(request):
+    return render(request,'about.html')
+
