@@ -1,11 +1,31 @@
 <html>
-    <head>
 
- 
-    </head>
+<head>
+    <div class="topnav">
+        <a class="active" href="{%url 'index'%}">Home</a>
+        <a href="#map">Map</a>
+        <a href="#connect">Connecte</a>
+        <a href="#about">Apropo</a>
+    </div>
+
+</head>
 
 
-    <body>
-        <h1>Test Page</h1>
-    </body>
+<body>
+
+    <div class="container">
+        <div class = "row mt-4">
+            <div class="col-md-10 ofset-md-1">
+                {{m| safe}}
+            </div>
+        </div>
+    </div>
+    <h1>Page de traqueur GPS</h1>
+    <h3>Bienvenue dans la page d'acceuil de personnes.</br>
+    vous pouvez vous <a href ="#conneter">connecter</a> pour voir les personnes conneter dans votre groupe
+    et eux aussi pourrons vous voir.</br>
+    une fois conneter 
+ </h3>
+</body>
+
 </html>
