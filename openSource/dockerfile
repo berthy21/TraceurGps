@@ -1,0 +1,13 @@
+FROM python:slim
+
+WORKDIR /app
+
+COPY . /app/
+
+RUN pip install django
+RUN pip install folium
+
+
+EXPOSE  80
+
+CMD ["python","manage.py","runserver","--noreload"]

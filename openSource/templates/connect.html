@@ -1,18 +1,23 @@
 <html>
 
-<head>
-    
-    <div class="topnav">
-        <a class="active" href="{%url 'index'%}">Home</a>
-        <a href="{%url 'map'%}">Map</a>
-        <a href="{%url 'connect'%}">Connecte</a>
-        <a href="{%url 'about'%}">Apropo</a>
-    </div>
 
-</head>
+
+{% extends 'head.html' %}
 
 <body>
     <h1>connetion</h1>
+    <div class="row">
+        <div class="col-sm-4">
+            <form action="" method="POST">
+                {%csrf_token%} //protege les info qui rentre dans le formulaire
+                {{form.as_p}}
+                <input type="submit" class="btn btn-success" value="Ajouter">
+            </form>
+        </div>
+    </div>
+    
+
+
     <form method="POST" action="/">
         <input type="text" name="name" placeholder="Nom">
         <input type="password" name="password" placeholder="mot de passe">
