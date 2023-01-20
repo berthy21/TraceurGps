@@ -1,9 +1,30 @@
-{% extends 'head.html' %}
+<html>
 
-<div class="container">
-    <div class = "row mt-4">
-        <div class="col-md-10 ofset-md-1">
-            {{m| safe}}
-        </div>
+
+
+
+
+<head>
+    <div class="topnav">
+        <a class="active" href="{%url 'index'%}">Home</a>
+        <a href="{%url 'map'%}">Map</a>
+        <a href="{%url 'connect'%}">Connecte</a>
+        <a href="{%url 'about'%}">Apropos</a>
     </div>
-</div>
+
+</head>
+
+
+<body>
+
+        <div class = "row mt-4">
+            <div class="col-md-10 ofset-md-1">
+                {{m| safe}}
+            </div>
+        </div>
+    
+
+</body>
+
+</html>
+

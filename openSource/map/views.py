@@ -29,7 +29,7 @@ def connect(request):
             nm = fm.cleaned_data['name']
             pwd = fm.cleaned_data['password']
             grp = fm.cleaned_data['groupe']
-            reg = User(name=nm,password=pwd,group=grp)
+            reg = User(name=nm,password=pwd,groupe=grp)
             fm.save()
             fm = UserRegistration()
     else :
@@ -38,7 +38,18 @@ def connect(request):
 
 
 def map (request):
-    return render(request,'map.html')
+    #creation de la carte
+    m = folium.Map(location = [50,-5])
+
+    #plugins.LocateControl(auto_start=True).add_to(m)
+    
+    folium.Marker()
+    #la representation html de l'objet carte 
+    m =  m._repr_html_()
+    context = {
+        'm':m,
+    }
+    return render(request,'map.html',context)
 
 def head (request):
     return render(request,'head.html')
@@ -48,7 +59,7 @@ def about(request):
     return render(request,'about.html')
 
 
-def add_show(request):
+def deconect(request):
 
-    return render(request,)
+    return render(request,'deconect.html')
 

@@ -2,15 +2,24 @@
 
 
 
-{% extends 'head.html' %}
+<head>
+    <div class="topnav">
+        <a class="active" href="{%url 'index'%}">Home</a>
+        <a href="{%url 'map'%}">Map</a>
+        <a href="{%url 'connect'%}">Connecte</a>
+        <a href="{%url 'about'%}">Apropos</a>
+    </div>
+
+</head>
+
 
 <body>
     <h1>connetion</h1>
     <div class="row">
         <div class="col-sm-4">
             <form action="" method="POST">
-                {%csrf_token%} //protege les info qui rentre dans le formulaire
-                {{form.as_p}}
+                {%csrf_token%} 
+                {{form}}
                 <input type="submit" class="btn btn-success" value="Ajouter">
             </form>
         </div>
@@ -18,20 +27,6 @@
     
 
 
-    <form method="POST" action="/">
-        <input type="text" name="name" placeholder="Nom">
-        <input type="password" name="password" placeholder="mot de passe">
-        <input type="submit" name="verifiepassword" value="connection">
-    </form>
-
-    <h1>Inscription </h1>
-    <form method="POST" action="/">
-        <input type="text" name="newUser" placeholder="Nom">
-        <input type="password" name="newPassword" placeholder="mot de passe">
-        <input type="text" name="idGroupe" placeholder="id du groupe">
-        <input type="submit" name="createPassword" value="Inscription">
-    </form>
-</body>
 
 
 </html>
