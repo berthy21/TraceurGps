@@ -1,8 +1,11 @@
 from django.shortcuts import render
 import folium 
 from folium import plugins
+import geocoder
 from .forms import UserRegistration
 from .models import User
+from .models import Addresse
+
 
 # Create your views here.
 
@@ -11,7 +14,9 @@ def index(request):
     #creation de la carte
     m = folium.Map(location = [50,-5])
 
-    plugins.LocateControl(auto_start=True).add_to(m)
+    l = plugins.LocateControl(auto_start=True)
+    l.add_to(m)
+    print (l)
     
     folium.Marker()
     #la representation html de l'objet carte 
@@ -38,18 +43,21 @@ def connect(request):
 
 
 def map (request):
-    #creation de la carte
-    m = folium.Map(location = [50,-5])
-
-    #plugins.LocateControl(auto_start=True).add_to(m)
-    
-    folium.Marker()
-    #la representation html de l'objet carte 
-    m =  m._repr_html_()
+    #addresse = Addresse.objects.all().last()
+    loca = geocoder.osm('UK')
+    lat = loca.lat
+    lng = loca.lng
+    g = geocoder.ip('me')
+    print(g.latlng)
+    #contry = loca.contry
+    m = folium.Map(location = [50.8505, 4.3488])
+    folium.Marker(g.latlng).add_to(m)
+    m = m._repr_html_()
     context = {
         'm':m,
     }
-    return render(request,'map.html',context)
+    return render(request,'map.html',context,)
+    
 
 def head (request):
     return render(request,'head.html')

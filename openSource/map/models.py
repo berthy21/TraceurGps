@@ -7,3 +7,11 @@ class User(models.Model):
     password = models.CharField(max_length=100)
     groupe = models.CharField(max_length=5)
 
+
+
+class Addresse(models.Model):
+    address = models.CharField(max_length=200,null=True)
+
+    def __str__(self):
+        return self.address
+
