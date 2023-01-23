@@ -1,7 +1,7 @@
 from django.shortcuts import render
+import geocoder
 import folium 
 from folium import plugins
-import geocoder
 from .forms import UserRegistration
 from .models import User,Member
 import csv
