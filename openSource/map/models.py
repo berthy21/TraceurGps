@@ -15,3 +15,7 @@ class Addresse(models.Model):
     def __str__(self):
         return self.address
 
+class Member(models.Model):
+    membre = models.TextField(default=None)
+    def __str__(self) -> str:
+        return super().__str__()

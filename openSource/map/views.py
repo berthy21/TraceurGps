@@ -3,8 +3,12 @@ import folium
 from folium import plugins
 import geocoder
 from .forms import UserRegistration
-from .models import User
-from .models import Addresse
+from .models import User,Member
+import csv
+import pandas as pd
+from django.db.models import Q
+
+i = 0
 
 
 # Create your views here.
@@ -43,19 +47,66 @@ def connect(request):
 
 
 def map (request):
-    #addresse = Addresse.objects.all().last()
-    loca = geocoder.osm('UK')
-    lat = loca.lat
-    lng = loca.lng
+    membre = Member.objects.all()
+
+    def get_ip(request):
+        addr=request.META.get('http_X_FORWARDED_FOR')
+        if addr :
+            ip = addr.split(',')[-1].strip()
+        else:
+            ip = request.META.get('REMOTE_ADDR')
+        return ip
+
+    ip = get_ip(request)
+    u = Member(membre =ip)
+    result = Member.objects.filter(Q(membre__icontains=ip))
+    if(len(result)==1):
+        print("user exist")
+        i=2
+    elif len (result)>1:
+        print ("user exist deja")
+        i=2
+    else :
+        u.save()
+        print ("user is unique")
+    count = Member.objects.all().count()
+
+
+    print(i)
     g = geocoder.ip('me')
-    print(g.latlng)
-    #contry = loca.contry
     m = folium.Map(location = [50.8505, 4.3488])
     folium.Marker(g.latlng).add_to(m)
+
+    
     m = m._repr_html_()
     context = {
         'm':m,
     }
+
+    if(i==2):
+        print(i)
+
+        nom_colonnes =['latitude','longitude']
+        f= open ('localisation.csv','w') 
+        with f:
+            data = csv.DictWriter(f,delimiter="," ,fieldnames=nom_colonnes)
+            data.writerow([g.lat,g.lng])
+        f.close()
+
+        da = pd.read_csv('localisation.csv')
+    
+
+        loc = da[['latitude',5]]
+        folium.Marker(loc).add_to(m)
+
+
+
+
+   
+
+            
+
+
     return render(request,'map.html',context,)
     
 
