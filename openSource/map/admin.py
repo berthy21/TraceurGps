@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import User,Member
+from .models import User,Member,Addresse
 
 # Register your models here.
 
@@ -10,3 +10,8 @@ class UserAdmin(admin.ModelAdmin):
     
 
 admin.site.register(Member)
+
+@admin.register(Addresse)
+
+class Address(admin.ModelAdmin):
+    list_display = ('address','id')

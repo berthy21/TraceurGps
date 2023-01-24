@@ -4,12 +4,11 @@ WORKDIR /app
 
 COPY . /app/
 
-
 RUN pip install geocoder
 RUN pip install django
 RUN pip install folium
 RUN pip install pandas
 
-EXPOSE  80
+EXPOSE  8000
 
-CMD ["python","manage.py","runserver","--noreload"]
+CMD python manage.py runserver --noreload 0.0.0.0:8000
