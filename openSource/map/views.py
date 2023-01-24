@@ -72,12 +72,12 @@ def map (request):
 
    
     
-    folium.Marker()
     g = geocoder.ip('me')
     m = folium.Map(location = [50.8505, 4.3488])
     
     l = plugins.LocateControl(auto_start=True)
     l.add_to(m)
+    folium.Marker()
     print (l)
     
     if request.method == 'POST':
