@@ -1,14 +1,15 @@
 from django.shortcuts import render
 import geocoder
 import folium 
-from folium import plugins
+from folium import plugins,PolyLine
 from .forms import UserRegistration,AddresseReg
 from .models import User,Member,Addresse
 import csv
 import pandas as pd
 from django.db.models import Q
+import geopy
+from geopy.distance import distance
 
-i = 0
 
 
 # Create your views here.
@@ -116,12 +117,16 @@ def map (request):
         loc = da[['latitude','longitude']]
         #folium.Marker(loc).add_to(m)
 
+    km = distance(g.latlng,location.latlng)
+    PolyLine([g.latlng,location.latlng],color='red').add_to(m)
+    
     m = m._repr_html_()
     
     
     context = {
     'form':fm,
     'm':m,
+    'km':km,
     }
 
     

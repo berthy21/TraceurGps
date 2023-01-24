@@ -8,6 +8,7 @@ RUN pip install geocoder
 RUN pip install django
 RUN pip install folium
 RUN pip install pandas
+RUN pip install geopy
 
 EXPOSE  8000
 
