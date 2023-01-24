@@ -70,13 +70,15 @@ def map (request):
         print ("user is unique")
     count = Member.objects.all().count()
 
-
+   
+    
+    folium.Marker()
     g = geocoder.ip('me')
     m = folium.Map(location = [50.8505, 4.3488])
-    folium.Marker(g.latlng,icon=folium.Icon(color='green')).add_to(m)
-    print(ip)
-    print(count)
-
+    
+    l = plugins.LocateControl(auto_start=True)
+    l.add_to(m)
+    print (l)
     
     if request.method == 'POST':
         fm = AddresseReg(request.POST)
@@ -95,7 +97,7 @@ def map (request):
     lon = location.lng
 
     print(add)
-    folium.Marker(location.latlng).add_to(m)
+    folium.Marker(location.latlng,icon=folium.Icon(color='green')).add_to(m)
 
     
     if(count==2 ): 
@@ -118,7 +120,6 @@ def map (request):
         #folium.Marker(loc).add_to(m)
 
     km = distance(g.latlng,location.latlng)
-    PolyLine([g.latlng,location.latlng],color='red').add_to(m)
     
     m = m._repr_html_()
     
